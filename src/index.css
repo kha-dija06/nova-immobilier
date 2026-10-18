@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Design System — styles de base et classes typographiques sémantiques.
+ * Les composants (Button, Badge, SectionTitle, etc.) consomment ces classes
+ * plutôt que de réassembler des utilitaires Tailwind bruts à chaque usage.
+ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ivory-50 font-sans text-onyx-900 antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-gold-200 text-onyx-900;
+  }
+
+  /* Focus clavier toujours visible (accessibilité) */
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold-400 ring-offset-2 ring-offset-ivory-50;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-onyx-900;
+  }
+}
+
+@layer components {
+  /* ---------- Hiérarchie typographique ---------- */
+
+  /* Hero / titre principal de page */
+  .text-display {
+    @apply font-display text-4xl font-semibold leading-[1.05] tracking-tight text-onyx-900 sm:text-5xl lg:text-[3.5rem];
+  }
+
+  .text-h1 {
+    @apply font-display text-3xl font-semibold leading-[1.15] tracking-tight text-onyx-900 sm:text-4xl lg:text-[2.75rem];
+  }
+
+  .text-h2 {
+    @apply font-display text-2xl font-semibold leading-[1.2] tracking-tight text-onyx-900 sm:text-3xl lg:text-[2.25rem];
+  }
+
+  .text-h3 {
+    @apply font-display text-xl font-medium leading-[1.3] text-onyx-900 sm:text-2xl;
+  }
+
+  .text-body {
+    @apply font-sans text-base leading-[1.7] text-stone-600;
+  }
+
+  .text-body-lg {
+    @apply font-sans text-lg leading-[1.7] text-stone-600;
+  }
+
+  .text-small {
+    @apply font-sans text-sm leading-[1.5] text-stone-500;
+  }
+
+  /* Petits libellés (form labels, meta info) — toujours en majuscules espacées */
+  .text-label {
+    @apply font-sans text-xs font-medium leading-[1.4] tracking-[0.08em] text-onyx-700;
+  }
+
+  /* Sur-titre discret au-dessus d'un SectionTitle, en accent gold */
+  .text-eyebrow {
+    @apply font-sans text-xs font-semibold uppercase leading-[1.4] tracking-[0.2em] text-gold-600;
+  }
+
+  /* Texte des boutons */
+  .text-button {
+    @apply font-sans text-[0.9375rem] font-medium leading-none tracking-wide;
+  }
+
+  /* ---------- Rythme vertical ---------- */
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+}
+
+@layer utilities {
+  /* Respect des préférences de mouvement réduit (accessibilité) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
